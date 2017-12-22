@@ -1,0 +1,18 @@
+sudo: required
+language: python
+services:
+- docker
+script:
+  - docker build -t python-sdk:latest .
+  - export IMAGE_TAG=${DOCKERFILE}_sdk-${SDK_VERSION}
+  - export IMAGE_TAG_DATE=${IMAGE_TAG}_`date "+%Y-%m-%d"`
+  - docker tag python-sdk:latest python-sdk:${IMAGE_TAG}
+  - docker tag python-sdk:latest python-sdk:${IMAGE_TAG_DATE}
+after_script: docker images
+env:
+  - SDK_BRANCH=master SDK_VERSION=latest DOCKERFILE=ubuntu-16.04
+  - SDK_BRANCH=v1.0.6 SDK_VERSION=1.0.6 DOCKERFILE=ubuntu-16.04
+  - SDK_BRANCH=v1.0.5 SDK_VERSION=1.0.5 DOCKERFILE=ubuntu-16.04
+  - SDK_BRANCH=v1.0.4 SDK_VERSION=1.0.4 DOCKERFILE=ubuntu-16.04
+  - SDK_BRANCH=v1.0.3 SDK_VERSION=1.0.3 DOCKERFILE=ubuntu-16.04
+  - SDK_BRANCH=v1.0.1 SDK_VERSION=1.0.1 DOCKERFILE=ubuntu-16.04
