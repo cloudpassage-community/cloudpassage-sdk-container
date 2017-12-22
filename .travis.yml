@@ -3,7 +3,7 @@ language: python
 services:
 - docker
 script:
-  - docker build -t python-sdk:latest .
+  - docker build --build-arg SDK_BRANCH=${SDK_BRANCH} -t python-sdk:latest -f dockerfiles/${DOCKERFILE}.
   - export IMAGE_TAG=${DOCKERFILE}_sdk-${SDK_VERSION}
   - export IMAGE_TAG_DATE=${IMAGE_TAG}_`date "+%Y-%m-%d"`
   - docker tag python-sdk:latest python-sdk:${IMAGE_TAG}
