@@ -2,6 +2,8 @@
 
 ## This repo is used for automated builds of the CloudPassage SDK container image.
 
+Images built from the code in this repo can be found at https://hub.docker.com/r/halotools/python-sdk
+
 The image tags indicate the base image and the version of the SDK included in the image, and may include a date to enable more precise pinning.
 
 This is how to understand the SDK container image tagging scheme:
